@@ -7,7 +7,16 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
-.run(function($ionicPlatform) {
+.constant('AUTH_EVENTS', {
+  unAuthenticated: 'unAuthenticated',
+  unAuthorized: 'unAunthorized'
+})
+
+.constant('BACKEND_HOST', "http://192.168.0.155:3000/")
+
+.run(function($ionicPlatform, $http) {
+  // $http.defaults.headers.post["Content-Type"] = "application/x-www-form-urlencoded";
+
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
@@ -38,31 +47,22 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
 
   // Each tab has its own nav history stack:
 
-  .state('tab.dash', {
-    url: '/dash',
+  .state('tab.expenses', {
+    url: '/expenses',
     views: {
-      'tab-dash': {
-        templateUrl: 'templates/tab-dash.html',
-        controller: 'DashCtrl'
+      'tab-expenses': {
+        templateUrl: 'templates/tab-expenses.html',
+        controller: 'ExpensesCtrl'
       }
     }
   })
 
-  .state('tab.chats', {
-      url: '/chats',
+  .state('tab.incomes', {
+      url: '/incomes',
       views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
-      }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
+        'tab-incomes': {
+          templateUrl: 'templates/tab-incomes.html',
+          controller: 'IncomesCtrl'
         }
       }
     })
@@ -78,6 +78,6 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   });
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/dash');
+  $urlRouterProvider.otherwise('/tab/expenses');
 
 });

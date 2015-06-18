@@ -1,0 +1,15 @@
+<ion-view view-title="记支出">
+  <ion-content class="padding">
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" ng-model="user.pinyin" placeholder="输入开销分类与金额" ng-change="searchCategory()">
+      </label>
+      <ul>
+        <li ng-repeat='category in categories'>
+          {{$index + 1}} {{category.name}}
+        </li>
+      </ul>
+    </div>
+  </ion-content>
+</ion-view>
