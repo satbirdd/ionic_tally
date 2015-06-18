@@ -1,7 +1,9 @@
 angular.module('starter.controllers', [])
 
 .controller('ExpensesCtrl', function($scope, $http, $state, BACKEND_HOST, AuthService) {
-  $scope.user = {};
+  $scope.expense = {validated: false};
+  $scope.steps = ["category", "price"];
+  $scope.step = $scope.steps[0];
 
   AuthService.loadCredential();
 
@@ -11,7 +13,7 @@ angular.module('starter.controllers', [])
   }
 
   $scope.searchCategory = function () {
-    var pinyin = $scope.user.pinyin;
+    var pinyin = $scope.expense.pinyin;
     var request_url = BACKEND_HOST + 'categories.json?pinyin=' + pinyin;
 
     $http.get(request_url)
@@ -20,6 +22,45 @@ angular.module('starter.controllers', [])
         })
         .error(function (data, status, header, config) {
         })
+  }
+
+  $scope.checkValidate = function () {
+    if ($scope.expense.price > 0) {
+      $scope.expense.validated = true;
+    } else {
+      $scope.expense.validated = false;
+    }
+  }
+
+  $scope.choseCategory = function (categoryId) {
+    var category = $scope.categories.filter(function (item) {
+      return item.id == categoryId;
+    })[0];
+    var categoryName = category.name;
+
+    $scope.expense.categoryName = category.name;
+    $scope.expense.categoryId = category.id;
+
+    $scope.expense.pinyin = categoryName;
+    $scope.step = "price";
+    $scope.categories = [];
+  }
+
+  $scope.saveExpense = function () {
+    if (!$scope.expense.validated) return;
+
+    var expense = $scope.expense;
+    var expenseData = {
+      money: expense.price,
+      category_id: expense.categoryId,
+      date: new Date()
+    }
+
+    $http.post(BACKEND_HOST + 'expenses.json', {expense: expenseData})
+      .success(function (data, status, header, config) {
+      })
+      .error(function (data, status, header, config) {
+      })
   }
 })
 
