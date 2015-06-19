@@ -38,6 +38,12 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
+  .state('summary', {
+    url: '/summary',
+    templateUrl: 'templates/summary.html',
+    controller: 'SummaryCtrl'
+  })
+
   // Each tab has its own nav history stack:
 
   .state('expenses', {

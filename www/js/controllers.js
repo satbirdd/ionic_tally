@@ -3,6 +3,10 @@ angular.module('starter.controllers', [])
 .controller('appController', function($scope, $ionicSideMenuDelegate, AuthService) {
   $scope.menu = [
     {
+      name: '收支一览',
+      url: 'summary'
+    },
+    {
       name: '记支出',
       url: 'expenses.payable'
     },
@@ -40,6 +44,16 @@ angular.module('starter.controllers', [])
     $ionicSideMenuDelegate.toggleLeft();
   };
 })
+
+.controller('SummaryCtrl', function ($scope, $http, $state, BACKEND_HOST, AuthService) {
+  AuthService.loadCredential();
+
+  if (!AuthService.isAuthenticated()) {
+    $state.go('account');
+    return;
+  }
+})
+
 
 .controller('ExpensesCtrl', function ($scope, $http, $state, BACKEND_HOST, AuthService) {
   AuthService.loadCredential();
