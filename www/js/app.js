@@ -76,15 +76,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     controller: 'IncomesNewCtrl'
   })
 
-  // .state('account', {
-  //   url: '/account',
-  //   views: {
-  //     'account': {
-  //       templateUrl: 'templates/account.html',
-  //       controller: 'AccountCtrl'
-  //     }
-  //   }
-  // });
+  .state('account', {
+    url: '/account',
+    templateUrl: 'templates/account.html',
+    controller: 'AccountCtrl'
+  });
 
 
   // if none of the above states are matched, use this as the fallback

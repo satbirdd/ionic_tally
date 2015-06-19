@@ -1,14 +1,6 @@
 angular.module('starter.controllers', [])
 
 .controller('appController', function($scope, $ionicSideMenuDelegate, AuthService) {
-
-  AuthService.loadCredential();
-
-  if (!AuthService.isAuthenticated()) {
-    $state.go('account');
-    return;
-  }
-
   $scope.menu = [
     {
       name: '记支出',
@@ -49,7 +41,7 @@ angular.module('starter.controllers', [])
   };
 })
 
-.controller('ExpensesCtrl', function ($scope, $http, BACKEND_HOST, AuthService) {
+.controller('ExpensesCtrl', function ($scope, $http, $state, BACKEND_HOST, AuthService) {
   AuthService.loadCredential();
 
   if (!AuthService.isAuthenticated()) {
