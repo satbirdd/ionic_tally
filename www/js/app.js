@@ -38,60 +38,56 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each state's controller can be found in controllers.js
   $stateProvider
 
-  // setup an abstract state for the tabs directive
-    .state('tab', {
-    url: "/tab",
-    abstract: true,
-    templateUrl: "templates/tabs.html"
-  })
-
   // Each tab has its own nav history stack:
 
-  .state('tab.expenses', {
-    url: '/expenses'
+  .state('expenses', {
+    url: '/expenses',
+    templateUrl: 'templates/expenses.html',
+    controller: 'ExpensesCtrl'
   })
 
-  .state('tab.expenses.category', {
-    url: '/category',
-    views: {
-      'tab-expenses-category': {
-        templateUrl: 'templates/tab-expenses-category.html',
-        controller: 'ExpensesCategoryCtl'
-      }
-    }
+  .state('expenses.payable', {
+    url: '/payable',
+    templateUrl: 'templates/expenses-payable.html',
+    controller: 'ExpensesPayableCtrl'
   })
 
-  .state('tab.expenses.new', {
-    url: '/new',
-    views: {
-      'tab-expenses-new': {
-        tamplateUrl: 'templates/tab-expenses-new.html',
-        controller: 'ExpensesNewCtrl'
-      }
-    }
+  .state('expenses.new', {
+    url: '/:payableType/:payableId/new',
+    templateUrl: 'templates/expenses-new.html',
+    controller: 'ExpensesNewCtrl'
   })
 
-  .state('tab.incomes', {
-      url: '/incomes',
-      views: {
-        'tab-incomes': {
-          templateUrl: 'templates/tab-incomes.html',
-          controller: 'IncomesCtrl'
-        }
-      }
-    })
+  .state('incomes', {
+    url: '/incomes',
+    templateUrl: 'templates/incomes.html',
+    controller: 'IncomesCtrl'
+  })
 
-  .state('tab.account', {
-    url: '/account',
-    views: {
-      'tab-account': {
-        templateUrl: 'templates/tab-account.html',
-        controller: 'AccountCtrl'
-      }
-    }
-  });
+  .state('incomes.payable', {
+    url: '/payable',
+    templateUrl: 'templates/incomes-payable.html',
+    controller: 'IncomesPayableCtrl'
+  })
+
+  .state('incomes.new', {
+    url: '/:payableType/:payableId/new',
+    templateUrl: 'templates/incomes-new.html',
+    controller: 'IncomesNewCtrl'
+  })
+
+  // .state('account', {
+  //   url: '/account',
+  //   views: {
+  //     'account': {
+  //       templateUrl: 'templates/account.html',
+  //       controller: 'AccountCtrl'
+  //     }
+  //   }
+  // });
+
 
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/tab/expenses');
+  $urlRouterProvider.otherwise('/expenses/payable');
 
 });

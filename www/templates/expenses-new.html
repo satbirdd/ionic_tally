@@ -1,0 +1,28 @@
+<div ng-switch on="step">
+  <div ng-switch-when="price">
+    <h4>已选择分类:{{expense.categoryName}}</h4>
+    <h4>支出金额: {{expense.price}}元</h4>
+  </div>
+  <div ng-switch-when="category" class="list list-inset">
+    <label class="item item-input">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="text" ng-model="expense.pinyin" placeholder="输入开销分类" ng-change="searchCategory()">
+    </label>
+    <ul class="list">
+      <li class="item" ng-repeat='category in categories' data-id='{{category}}' ng-click='choseCategory(category.id)'>
+        {{category.name}}
+      </li>
+    </ul>
+  </div>
+  <div ng-switch-when="price" class="list list-inset">
+    <label class="item item-input">
+      <i class="icon ion-yen placeholder-icon"></i>
+      <input type="number" step='0.1' ng-model="expense.price" placeholder="输入开销分金额" ng-change='checkValidate()'>
+    </label>
+  </div>
+  <div ng-switch-when="price">
+    <button class="button button-block" ng-class= "expense.validated ? 'button-positive' : 'button-light'" ng-click="saveExpense()">
+      记一笔
+    </button>
+  </div>
+</div>

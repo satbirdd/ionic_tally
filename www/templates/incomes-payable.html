@@ -1,0 +1,6 @@
+<ul class='list'>
+  <a ng-repeat='payable in payables'
+     ui-sref="incomes.new({payableType: payable.class, payableId: payable.id})">
+    <li class='item'>{{payable.name}}(￥{{payable.money}})</li>
+  </a>
+</ul>
