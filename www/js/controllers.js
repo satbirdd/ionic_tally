@@ -1,6 +1,6 @@
 angular.module('starter.controllers', [])
 
-.controller('ExpensesCtrl', function($scope, $http, $state, BACKEND_HOST, AuthService) {
+.controller('ExpensesNewCtrl', function($scope, $http, $state, BACKEND_HOST, AuthService) {
   $scope.expense = {validated: false};
   $scope.steps = ["category", "price"];
   $scope.step = $scope.steps[0];
@@ -64,7 +64,7 @@ angular.module('starter.controllers', [])
   }
 })
 
-.controller('IncomesCtrl', function($scope, Chats) {
+.controller('IncomesCtrl', function($scope) {
   // With the new view caching in Ionic, Controllers are only called
   // when they are recreated or on app start, instead of every page change.
   // To listen for when this page is active (for example, to refresh data),

@@ -48,11 +48,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
   // Each tab has its own nav history stack:
 
   .state('tab.expenses', {
-    url: '/expenses',
+    url: '/expenses'
+  })
+
+  .state('tab.expenses.category', {
+    url: '/category',
     views: {
-      'tab-expenses': {
-        templateUrl: 'templates/tab-expenses.html',
-        controller: 'ExpensesCtrl'
+      'tab-expenses-category': {
+        templateUrl: 'templates/tab-expenses-category.html',
+        controller: 'ExpensesCategoryCtl'
+      }
+    }
+  })
+
+  .state('tab.expenses.new', {
+    url: '/new',
+    views: {
+      'tab-expenses-new': {
+        tamplateUrl: 'templates/tab-expenses-new.html',
+        controller: 'ExpensesNewCtrl'
       }
     }
   })
