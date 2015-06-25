@@ -52,6 +52,14 @@ angular.module('starter.controllers', [])
     $state.go('account');
     return;
   }
+
+  $http.get(BACKEND_HOST + 'api/v1/summary.json')
+      .success(function (data, status, header, config) {
+        $scope.summary = data;
+      })
+      .error(function(data, status, header, config) {
+        debugger;
+      })
 })
 
 

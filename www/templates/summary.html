@@ -1,4 +1,15 @@
 <ion-view view-title="收支一览">
   <ion-content class="padding">
+    <ul class='list'>
+      <li class='item'>今年{{summary.year_total}} {{summary.income_year_total}} {{summary.year_balance}}</li>
+      <li class='item'>本月{{summary.month_total}} {{summary.income_month_total}} {{summary.month_balance}}</li>
+      <li class='item'>今天{{summary.day_total}}</li>
+    </ul>
+
+    <ul class='list'>
+      <li class='item' ng-repeat='(month, item) in summary.last_year_monthly_total'>
+        {{month}} {{item.expense}} {{item.income}}
+      </li>
+    </ul>
   </ion-content>
 </ion-view>
