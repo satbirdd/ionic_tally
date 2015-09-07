@@ -1,14 +1,30 @@
 <ion-view view-title="收支一览">
   <ion-content class="padding">
-    <ul class='list'>
-      <li class='item'>今年{{summary.year_total}} {{summary.income_year_total}} {{summary.year_balance}}</li>
-      <li class='item'>本月{{summary.month_total}} {{summary.income_month_total}} {{summary.month_balance}}</li>
-      <li class='item'>今天{{summary.day_total}}</li>
+    <ul class='list summary'>
+      <li class='item this-year'>
+        <span class='period'>今年</span>
+        <span class='expense'>支出{{summary.year_total | currency:"￥"}}</span>
+        <span class='income'>收入{{summary.income_year_total | currency:"￥"}}</span>
+        <span class='surplus'>盈余{{summary.income_year_total - summary.year_total | currency:"￥"}}</span>
+      </li>
+      <li class='item this-month'>
+        <span class='period'>本月</span>
+        <span class='expense'>支出{{summary.month_total | currency:"￥"}}</span>
+        <span class='income'>收入{{summary.income_month_total | currency:"￥"}}</span>
+        <span class='surplus'>盈余{{summary.income_month_total - summary.month_total | currency:"￥"}}</span>
+      </li>
+      <li class='item today'>
+        <span class='period'>今天</span>
+        <span class='expense'>支出{{summary.day_total | currency:"￥"}}</span>
+      </li>
     </ul>
 
-    <ul class='list'>
+    <ul class='list last-year'>
       <li class='item' ng-repeat='(month, item) in summary.last_year_monthly_total'>
-        {{month}} {{item.expense}} {{item.income}}
+        <span class='period'>{{month}}</span>
+        <span class='expense'>支出{{item.expense | currency:"￥"}}</span>
+        <span class='income'>收入{{item.income | currency:"￥"}}</span>
+        <span class='surplus'>盈余{{item.income - item.expense | currency:"￥"}}</span>
       </li>
     </ul>
   </ion-content>
